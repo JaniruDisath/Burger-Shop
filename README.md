@@ -18,7 +18,7 @@ This repository is not just about a single app, but about **showcasing my growth
 ---
 
 ## 📂 Project Versions
-- [Version 1 – Console Arrays]([./v1 – Terminal app with basic arrays)  
-- [Version 2 – OOP + Swing](./v2-oop-swing)  
-- [Version 3 – SOLID Architecture + (Soon to be Added) SQL](./v3-solid-architecture)  
+- [Version 1 – Console Arrays]
+- [Version 2 – OOP + Swing]
+- [Version 3 – SOLID Architecture + (Soon to be Added)
  
