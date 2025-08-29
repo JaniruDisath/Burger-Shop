@@ -14,13 +14,11 @@ import java.util.Objects;
 public class MainWindow {
 
     private BurgurFrame frame;
-
     private CustomButton buttonPlaceOrder;
     private CustomButton buttonSearch;
     private CustomButton buttonViewOrders;
     private CustomButton buttonUpdateOrderDetail;
     private CustomButton exitButton;
-
     private CustomButton addCustomers;
     private CustomButton testButton;
 

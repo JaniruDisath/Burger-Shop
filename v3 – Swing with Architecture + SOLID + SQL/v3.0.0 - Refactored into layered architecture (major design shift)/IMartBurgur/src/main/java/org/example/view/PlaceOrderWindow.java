@@ -1,12 +1,8 @@
 package org.example.view;
 
-
 import org.example.controller.PlaceOrderController;
 import org.example.elements.*;
-import org.example.repository.BurgerShopDatabase;
-import org.example.repository.OurDataBase;
 import org.example.service.order.GenerateOrderID;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
@@ -14,28 +10,16 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class PlaceOrderWindow {
-    private final BurgerShopDatabase dataBase = OurDataBase.SHARED_DB;
-    private String orderIDPO;
-    private long custIDPO = 0;
-    private String custNamePO = "";
-    private int burgerQTYPO = 0;
 
     private final BurgurTextField customerIDEntered = new BurgurTextField();
     private final BurgurTextField customerNamePO = new BurgurTextField();
     private final BurgurTextField textFieldBurgerNumber = new BurgurTextField();
-
-    private final int latestOrder = dataBase.getLatestOrder();
-    private int LatestProfile = dataBase.getLatestProfile();
-
-    CustomButton confirmOrder;
-    CustomButton backToHomePage;
-    CustomButton cancelOrder;
-
-    BurgurFrame frame;
-
-    BurgurTextLables burgerTotalPO;
-
-    PlaceOrderController placeOrderController;
+    
+    private CustomButton confirmOrder;
+    private CustomButton backToHomePage;
+    private CustomButton cancelOrder;
+    private BurgurFrame frame;
+    private BurgurTextLables burgerTotalPO;
 
     public void openPlaceOrderWindow() {
         frame = new BurgurFrame("Burger Shop");
@@ -92,9 +76,9 @@ public class PlaceOrderWindow {
         //Customer Name
         gbc.gridx = 0;
         gbc.gridy = row;
-        BurgurTextLables customerNameIDLable = new BurgurTextLables();
-        customerNameIDLable.setText("Customer Name");
-        centerPanel.add(customerNameIDLable, gbc);
+        BurgurTextLables customerNameIDLabel = new BurgurTextLables();
+        customerNameIDLabel.setText("Customer Name");
+        centerPanel.add(customerNameIDLabel, gbc);
 
         gbc.gridx = 1;
         centerPanel.add(customerNamePO, gbc);
