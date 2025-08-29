@@ -94,10 +94,11 @@ public class PlaceOrderServices {
         try {
             customerID = getCustomerID();
         } catch (IllegalArgumentException ignored) {
-
+            //Ignoring the exceptions 
         }
 
-        int prof = -1, gotit = 0;
+        int prof = -1;
+        int gotit = 0;
 
         for (int i = 0; i < OurDataBase.SHARED_DB.getLatestProfile(); i++) {
             if (OurDataBase.SHARED_DB.getProfCustIDSOD(i) == customerID) {
