@@ -61,11 +61,20 @@ public class PlaceOrderServices {
     }
 
     public void findCustomer() {
-        long customerID = new IDServices().getCustomerIDIgnoreExceptions(getCustomerID());
+        long customerID = getCustomerIDIgnoreExceptions();
         int profilePosition = new IDServices().findCustomerIDPosition(customerID);
         if (profilePosition != -1) {
             setFoundCustomer(profilePosition);
         }
+    }
+
+    public long getCustomerIDIgnoreExceptions(){
+        try {
+            return getCustomerID();
+        } catch (IllegalArgumentException ignored) {
+            //Ignoring the exceptions
+        }
+        return -1;
     }
 
     public void setFoundCustomer(int profilePosition) {

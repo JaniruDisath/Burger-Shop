@@ -29,14 +29,7 @@ public class IDServices {
             return getCustomerIDValidated(idString);
     }
 
-    public long getCustomerIDIgnoreExceptions(long customerID){
-        try {
-            return customerID;
-        } catch (IllegalArgumentException ignored) {
-            //Ignoring the exceptions
-        }
-        return -1;
-    }
+
 
     public int findCustomerIDPosition(long customerID){
         if (customerID==-1)return -1;
