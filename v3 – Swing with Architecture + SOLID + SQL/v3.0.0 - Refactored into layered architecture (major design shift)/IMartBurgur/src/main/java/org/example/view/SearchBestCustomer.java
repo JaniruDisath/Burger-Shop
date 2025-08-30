@@ -9,6 +9,10 @@ import java.awt.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 public class SearchBestCustomer{
+
+	private CustomButton backToHomePage;
+
+
 	private BurgerShopDatabase database = OurDataBase.SHARED_DB;
 	private int LatestOrder=database.getLatestOrder();
 	private int LatestProfile=database.getLatestProfile();
@@ -18,6 +22,7 @@ public class SearchBestCustomer{
 	private DefaultTableModel model = new DefaultTableModel(columns, 0);
 	private JTable table = new JTable(model);
 	private int n = database.getLatestProfile();
+
 	public void openSearchBestCustomer(){	
 		BurgurFrame frame = new BurgurFrame("Burgur Shop");
 		JPanel rightSideMenu = new JPanel();
@@ -81,6 +86,7 @@ public class SearchBestCustomer{
 		
 		rightSideMenu.add(topTitle, BorderLayout.NORTH);
 		rightSideMenu.add(tablePanel, BorderLayout.CENTER);
+
 		//Bottom Panel
 		BurgurPanelCover backtoHomePagePanel =new BurgurPanelCover();
 		backtoHomePagePanel.setLayout(new GridBagLayout());
@@ -88,14 +94,15 @@ public class SearchBestCustomer{
 		GridBagLayout.anchor = GridBagConstraints.EAST;
 		GridBagLayout.insets = new Insets(10, 10, 10, 10);
 		//Back Home
-		CustomButton backtoHomePageS = new CustomButton("Back to Home Page","GREEN",200);
+		CustomButton backToHomePage = new CustomButton("Back to Home Page","GREEN",200);
+
 		backtoHomePagePanel.add(Box.createRigidArea(new Dimension(20, 0)));
 		//Back
 		CustomButton backto = new CustomButton("Back","GREEN",200);
 		GridBagLayout.gridx = 0; GridBagLayout.gridy = 0;
 		backtoHomePagePanel.add(backto,GridBagLayout);
 		GridBagLayout.gridx = 1; 
-		backtoHomePagePanel.add(backtoHomePageS,GridBagLayout);
+		backtoHomePagePanel.add(backToHomePage,GridBagLayout);
 		rightSideMenu.add(backtoHomePagePanel,BorderLayout.SOUTH);
 		frame.add(rightSideMenu);
 		frame.pack();

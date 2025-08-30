@@ -1,5 +1,7 @@
 package org.example.service.customer;
 
+import org.example.repository.OurDataBase;
+
 public class IDServices {
 
     public long getCustomerIDValidated(String customerIDText) {
@@ -25,5 +27,24 @@ public class IDServices {
 
     public long getValidatedCustomerID(String idString) {
             return getCustomerIDValidated(idString);
+    }
+
+    public long getCustomerIDIgnoreExceptions(long customerID){
+        try {
+            return customerID;
+        } catch (IllegalArgumentException ignored) {
+            //Ignoring the exceptions
+        }
+        return -1;
+    }
+
+    public int findCustomerIDPosition(long customerID){
+        if (customerID==-1)return -1;
+        for (int i = 0; i < OurDataBase.SHARED_DB.getLatestProfile(); i++) {
+            if (OurDataBase.SHARED_DB.getProfCustIDSOD(i) == customerID) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

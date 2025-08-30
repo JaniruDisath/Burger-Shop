@@ -25,7 +25,7 @@ public class PlaceOrderHandler {
     }
 
     public void handleFindCustomerID(){
-        services.findCustomerID();
+        services.findCustomer();
     }
 
     public double handleTotalValues(String stringValue){

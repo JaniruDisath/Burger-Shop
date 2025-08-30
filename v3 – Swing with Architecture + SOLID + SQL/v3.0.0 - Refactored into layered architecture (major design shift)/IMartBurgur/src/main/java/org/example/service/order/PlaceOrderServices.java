@@ -5,6 +5,8 @@ import org.example.controller.PlaceOrderController;
 import org.example.model.PlaceOrder;
 import org.example.repository.Orders;
 import org.example.repository.OurDataBase;
+import org.example.service.burger.BurgerNumber;
+import org.example.service.customer.CustomerName;
 import org.example.service.customer.IDServices;
 
 public class PlaceOrderServices {
@@ -24,58 +26,26 @@ public class PlaceOrderServices {
         }
     }
 
-    //Validations
-    //Customer ID - getValues
+    //Customer ID - getValues with the exceptions
     public long getCustomerID() {
-            return new IDServices().getValidatedCustomerID(controller.getCustomerIDString());
+        return new IDServices().getValidatedCustomerID(controller.getCustomerIDString());
     }
 
-    //Customer Name Validation
-    public String getValidCustomerName() {
-        String name = controller.getCustomerName();
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("Please Enter Customer Name");
-        }
-        return name;
-    }
-
-    //Burger Number Validation
-    public int getValidBurgerNumber(String burgerNumberString) {
-
-        if (burgerNumberString.isEmpty()) {
-            throw new IllegalArgumentException("Please Enter Burger Number");
-        }
-
-        int burgerNumber = 0;
-
-        try {
-            burgerNumber = Integer.parseInt(burgerNumberString);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Please enter a valid number for Burger Quantity");
-        }
-
-        if (burgerNumber <= 0) {
-            throw new IllegalArgumentException("Please enter a positive quantity");
-        }
-
-        return burgerNumber;
-    }
-
+    //Burger Number Validation with exception
     public int getValidatedBurgerNumber() {
-            return getValidBurgerNumber(controller.getBurgerNumberString());
+        return new BurgerNumber().getValidBurgerNumber(controller.getBurgerNumberString());
     }
-
 
     //DatabaseFunctions
     public void addOrderToDatabase() {
 
         try {
             long customerID = getCustomerID();
-            String name = getValidCustomerName();
+            String name = new CustomerName().getValidCustomerName(controller.getCustomerName());
             int burgerNumber = getValidatedBurgerNumber();
             String orderID = new GenerateOrderID().generateId();
 
-            placeNewOrder(new PlaceOrder(customerID,name,burgerNumber, orderID));
+            placeNewOrder(new PlaceOrder(customerID, name, burgerNumber, orderID));
 
             controller.sendOptionPaneMessage("Order Added Successfully");
             controller.closePlaceOrderWindow();
@@ -83,36 +53,23 @@ public class PlaceOrderServices {
         } catch (IllegalArgumentException e) {
             controller.sendOptionPaneMessage(e.getMessage());
         }
-    //TODO - Move these to repository on the development on that class
+        //TODO - Move these to repository on the development on that class
     }
-    public void placeNewOrder(PlaceOrder placeOrder){
+
+    public void placeNewOrder(PlaceOrder placeOrder) {
         new Orders().placeNewOrder(placeOrder);
     }
 
-    public void findCustomerID() {
-        long customerID = 0;
-        try {
-            customerID = getCustomerID();
-        } catch (IllegalArgumentException ignored) {
-            //Ignoring the exceptions 
+    public void findCustomer() {
+        long customerID = new IDServices().getCustomerIDIgnoreExceptions(getCustomerID());
+        int profilePosition = new IDServices().findCustomerIDPosition(customerID);
+        if (profilePosition != -1) {
+            setFoundCustomer(profilePosition);
         }
-
-        int prof = -1;
-        int gotit = 0;
-
-        for (int i = 0; i < OurDataBase.SHARED_DB.getLatestProfile(); i++) {
-            if (OurDataBase.SHARED_DB.getProfCustIDSOD(i) == customerID) {
-                gotit = 1;
-                prof = i;
-                break;
-            }
-        }
-        if (gotit == 1) {
-            controller.setName(OurDataBase.SHARED_DB.getCustNameSOD(prof));
-            controller.setNameFieldEditable(false);
-        }
-        //TODO - Simplify this method using Solid
     }
 
-
+    public void setFoundCustomer(int profilePosition) {
+        controller.setName(OurDataBase.SHARED_DB.getCustNameSOD(profilePosition));
+        controller.setNameFieldEditable(false);
+    }
 }
