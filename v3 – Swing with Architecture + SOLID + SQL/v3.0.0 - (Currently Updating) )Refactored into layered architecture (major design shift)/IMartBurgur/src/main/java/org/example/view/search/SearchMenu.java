@@ -1,4 +1,4 @@
-package org.example.view;
+package org.example.view.search;
 
 import org.example.controller.SearchMenuController;
 import org.example.elements.*;

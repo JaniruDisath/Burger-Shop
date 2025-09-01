@@ -3,7 +3,7 @@ package org.example.controller;
 import org.example.repository.OurDataBase;
 import org.example.view.MainWindow;
 import org.example.view.SearchBestCustomer;
-import org.example.view.SearchMenu;
+import org.example.view.search.SearchMenu;
 
 public class SearchBestCustomerController {
 
@@ -57,5 +57,5 @@ public class SearchBestCustomerController {
             view.getTableModel().addRow(new Object[]{(i + 1), "0" + OurDataBase.SHARED_DB.getProfCustIDSOD(r), OurDataBase.SHARED_DB.getCustNameSOD(r), OurDataBase.SHARED_DB.getCustTotalSOD(r)});
         }
     }
-
+    //TODO  -  Add service class and sync with the repository
 }

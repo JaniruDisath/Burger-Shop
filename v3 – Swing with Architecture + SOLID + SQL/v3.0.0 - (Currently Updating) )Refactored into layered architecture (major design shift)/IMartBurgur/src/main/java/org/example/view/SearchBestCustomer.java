@@ -24,7 +24,7 @@ public class SearchBestCustomer {
 
 
     public void openSearchBestCustomer() {
-        frame = new BurgurFrame("Burgur Shop");
+        frame = new BurgurFrame("Burger Shop");
         JPanel rightSideMenu = new JPanel();
         rightSideMenu.setLayout(new BorderLayout());
         rightSideMenu.setBackground(CommonColors.commonBackgroundColor);
@@ -44,8 +44,6 @@ public class SearchBestCustomer {
 
         int tableWidth = col1Width + col2Width + col3Width;
         table.setEnabled(false);
-
-//        loadTable();
 
 
         table.getTableHeader().setResizingAllowed(false);

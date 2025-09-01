@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.repository.OurDataBase;
 import org.example.service.DeveloperOptions;
 import org.example.view.*;
+import org.example.view.search.SearchMenu;
 
 public class MainWindowController {
 

@@ -14,6 +14,7 @@ import java.util.Random;
 public class DeveloperOptions {
 
 private int go =5;
+private int got =0;
 
     public void addTestData(int number) {
         BurgerShopDatabase db = OurDataBase.SHARED_DB;
@@ -40,8 +41,24 @@ private int go =5;
         OurDataBase.devOptions=1;
     }
 
-    public int getDev() {
+    public int setDev() {
         SearchOrderDetails currentSearchOrder = OurDataBase.SEARCH_ORDER;
-        return currentSearchOrder.getDev();
+        return getDev();
+    }
+
+
+//    public void setDeveloperOptions(String devPassword) {
+//        devPassword= textFieldDevOptions.getText().trim().toUpperCase();
+//        System.out.println("We get " + devfinal);
+//
+//        if (devfinal.matches("[D]{1}[E]{1}[V]{1}[0]{4}[U]{1}")) {
+//            got = 1;
+//            System.out.println("Here We go");
+//        }
+//    }
+
+    public int getDev() {
+        System.out.println("We get " + got);
+        return got;
     }
 }

@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.view.*;
+import org.example.view.search.SearchMenu;
 
 public class SearchMenuController {
 
@@ -16,7 +17,7 @@ public class SearchMenuController {
         });
         view.onSearchOrder(e -> {
             view.close();
-            new SearchOrderDetails().openSearchOrderDetials();
+            new SearchOrderDetails().openSearchOrderDetails();
         });
         view.onSearchCustomer(e -> {
             view.close();
